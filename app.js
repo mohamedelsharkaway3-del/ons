@@ -546,7 +546,52 @@ window.sendAI = sendAI;
 window.openModal = closeModal;
 window.closeModal = closeModal;
 window.openFounderModal = openFounderModal;
-window.closeFounderModal = closeFounderModal;
+window.closeFounderModal = closeFounderModal;// Mobile Menu Toggle
+const menuToggle = document.getElementById('menuToggle');
+const sidebar = document.getElementById('sidebar');
+
+if (menuToggle && sidebar) {
+    menuToggle.addEventListener('click', () => {
+        sidebar.classList.toggle('open');
+        
+        // Close sidebar when clicking outside on mobile
+        if (window.innerWidth <= 768) {
+            const closeOnOutside = (e) => {
+                if (!sidebar.contains(e.target) && !menuToggle.contains(e.target)) {
+                    sidebar.classList.remove('open');
+                    document.removeEventListener('click', closeOnOutside);
+                }
+            };
+            setTimeout(() => {
+                document.addEventListener('click', closeOnOutside);
+            }, 100);
+        }
+    });
+}
+
+// Prevent double-tap zoom on iOS
+document.addEventListener('dblclick', (e) => {
+    e.preventDefault();
+}, { passive: false });
+
+// Smooth scroll for mobile
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+});
+
+// Detect mobile device
+const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+if (isMobile) {
+    document.body.classList.add('mobile-device');
+    console.log('📱 Mobile device detected');
+}
 window.createFounderUser = createFounderUser;
 window.showToast = showToast;
 window.sendWhatsApp = sendWhatsApp;
