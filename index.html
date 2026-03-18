@@ -35,7 +35,7 @@
         <form id="loginForm" onsubmit="handleLogin(event)">
             <div class="form-group form-input-icon">
                 <label class="form-label">البريد الإلكتروني</label>
-                <input type="email" class="form-input" id="loginEmail" placeholder="example@company.com" required>
+                <input type="email" class="form-input" id="loginEmail" placeholder="founder@onvo.os" required>
                 <span class="icon">✉</span>
             </div>
 
@@ -59,8 +59,21 @@
             </button>
         </form>
 
+        <!-- Default Credentials Info -->
+        <div style="margin-top: 20px; padding: 14px; background: rgba(59, 130, 246, 0.08); border: 1px solid rgba(59, 130, 246, 0.2); border-radius: 10px; font-size: 0.78rem; color: var(--t3);">
+            <div style="font-weight: 700; color: var(--blue-bright); margin-bottom: 6px;">📋 بيانات الدخول الافتراضية:</div>
+            <div style="display: flex; justify-content: space-between; margin-top: 8px;">
+                <span>البريد:</span>
+                <span style="color: var(--t1); font-family: monospace;" dir="ltr">founder@onvo.os</span>
+            </div>
+            <div style="display: flex; justify-content: space-between; margin-top: 4px;">
+                <span>كلمة المرور:</span>
+                <span style="color: var(--t1); font-family: monospace;" dir="ltr">founder123</span>
+            </div>
+        </div>
+
         <!-- Stats -->
-        <div style="display: flex; justify-content: space-around; margin-top: 32px; padding-top: 24px; border-top: 1px solid var(--border-1);">
+        <div style="display: flex; justify-content: space-around; margin-top: 28px; padding-top: 24px; border-top: 1px solid var(--border-1);">
             <div style="text-align: center;">
                 <div style="font-size: 1.3rem; font-weight: 900; color: var(--blue-bright);">98%</div>
                 <div style="font-size: 0.7rem; color: var(--t3);">رضا الفريق</div>
@@ -95,91 +108,161 @@
         </div>
     </div>
 
+    <!-- ═══════════════════════════════════════
+         LOGIN JAVASCRIPT — كامل ومتكامل
+         ═══════════════════════════════════════ -->
     <script>
-        // Reset Modal Functions
-        function openResetModal() {
-            document.getElementById('resetModal').classList.add('open');
-        }
+    // ═══════════════════════════════════════
+    //  ONVO OS — Login Handler v4.5
+    // ═══════════════════════════════════════
 
-        function closeResetModal() {
-            document.getElementById('resetModal').classList.remove('open');
-            document.getElementById('resetSuccess').classList.remove('show');
-        }
+    // Default Founder Credentials
+    const DEFAULT_FOUNDER = {
+        id: 'user_founder',
+        email: 'founder@onvo.os',
+        password: 'founder123',
+        name: 'مؤسس أونفو',
+        username: 'founder',
+        role: 'مؤسس',
+        department: 'founder',
+        level: 'c-level',
+        status: 'active',
+        createdAt: new Date().toISOString()
+    };
 
-        function sendResetLink() {
-            const email = document.getElementById('resetEmail').value;
-            if (!email) {
-                alert('يرجى إدخال البريد الإلكتروني');
-                return;
+    // Initialize default user if not exists
+    function initDefaultUser() {
+        const users = JSON.parse(localStorage.getItem('onvo_users') || '[]');
+        if (users.length === 0) {
+            users.push({ ...DEFAULT_FOUNDER });
+            localStorage.setItem('onvo_users', JSON.stringify(users));
+            console.log('✅ تم إنشاء حساب المؤسس الافتراضي');
+            console.log('📧 Email:', DEFAULT_FOUNDER.email);
+            console.log('🔑 Password:', DEFAULT_FOUNDER.password);
+        }
+        return users;
+    }
+
+    // Login Handler
+    async function handleLogin(event) {
+        event.preventDefault();
+        
+        const email = document.getElementById('loginEmail').value.trim();
+        const password = document.getElementById('loginPassword').value;
+        const btn = document.getElementById('loginBtn');
+        const errorEl = document.getElementById('loginError');
+        const errorMsg = document.getElementById('loginErrorMessage');
+        
+        // Show loading
+        btn.innerHTML = '<span class="spinner"></span> جاري الدخول...';
+        btn.disabled = true;
+        errorEl.classList.remove('show');
+        errorEl.style.display = 'none';
+        
+        // Small delay for better UX
+        await new Promise(resolve => setTimeout(resolve, 800));
+        
+        try {
+            // Initialize default user
+            initDefaultUser();
+            
+            // Check against stored users
+            const users = JSON.parse(localStorage.getItem('onvo_users') || '[]');
+            let user = users.find(u => 
+                (u.email === email || u.username === email) && 
+                u.password === password && 
+                u.status === 'active'
+            );
+            
+            // Fallback to default founder
+            if (!user && email === DEFAULT_FOUNDER.email && password === DEFAULT_FOUNDER.password) {
+                user = { ...DEFAULT_FOUNDER };
             }
-            document.getElementById('resetSuccess').classList.add('show');
-        }
-
-        // Login Handler with Audio Welcome
-        async function handleLogin(event) {
-            event.preventDefault();
-
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-            const btn = document.getElementById('loginBtn');
-            const errorEl = document.getElementById('loginError');
-
-            // Show loading
-            btn.innerHTML = '<span class="spinner"></span> جاري الدخول...';
-            btn.disabled = true;
-            errorEl.classList.remove('show');
-
-            try {
-                // Check against stored users
-                const users = JSON.parse(localStorage.getItem('onvo_users') || '[]');
-                let user = users.find(u => u.email === email && u.password === password && u.status === 'active');
-
-                // Fallback to default founder
-                if (!user && email === 'founder@onvo.os' && password === 'founder123') {
-                    user = {
-                        name: 'مؤسس أونفو',
-                        username: 'founder',
-                        role: 'مؤسس',
-                        email: email,
-                        department: 'founder',
-                        level: 'c-level'
-                    };
-                }
-
-                if (user) {
-                    // Store session
-                    sessionStorage.setItem('onvo_user', JSON.stringify(user));
-
-                    // Redirect to app
-                    window.location.href = 'app.html';
-                } else {
-                    throw new Error('بيانات الدخول غير صحيحة');
-                }
-            } catch (err) {
-                errorEl.classList.add('show');
-                document.getElementById('loginErrorMessage').textContent = err.message;
-                btn.innerHTML = 'الدخول إلى لوحة التحكم ←';
-                btn.disabled = false;
-
-                // Shake animation
-                document.querySelector('.login-card').style.animation = 'none';
+            
+            if (user) {
+                // Store session
+                sessionStorage.setItem('onvo_user', JSON.stringify({
+                    id: user.id,
+                    name: user.name,
+                    username: user.username,
+                    role: user.role,
+                    email: user.email,
+                    department: user.department,
+                    level: user.level
+                }));
+                
+                // Show success
+                btn.innerHTML = '✅ تم تسجيل الدخول...';
+                btn.style.background = 'linear-gradient(135deg, #10b981, #059669)';
+                
+                // Redirect to app
                 setTimeout(() => {
-                    document.querySelector('.login-card').style.animation = 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both';
-                }, 10);
+                    window.location.href = 'app.html';
+                }, 1000);
+            } else {
+                throw new Error('البريد الإلكتروني أو كلمة المرور غير صحيحة');
             }
+        } catch (err) {
+            errorEl.style.display = 'flex';
+            errorEl.classList.add('show');
+            errorMsg.textContent = err.message;
+            btn.innerHTML = 'الدخول إلى لوحة التحكم ←';
+            btn.disabled = false;
+            btn.style.background = 'linear-gradient(135deg, var(--blue) 0%, var(--violet) 100%)';
+            
+            // Shake animation
+            const loginCard = document.querySelector('.login-card');
+            loginCard.style.animation = 'none';
+            setTimeout(() => {
+                loginCard.style.animation = 'shake 0.5s cubic-bezier(.36,.07,.19,.97) both';
+            }, 10);
         }
+    }
 
-        // Add shake animation
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes shake {
-                10%, 90% { transform: translateX(-1px); }
-                20%, 80% { transform: translateX(2px); }
-                30%, 50%, 70% { transform: translateX(-4px); }
-                40%, 60% { transform: translateX(4px); }
-            }
-        `;
-        document.head.appendChild(style);
+    // Add shake animation
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes shake {
+            10%, 90% { transform: translateX(-1px); }
+            20%, 80% { transform: translateX(2px); }
+            30%, 50%, 70% { transform: translateX(-4px); }
+            40%, 60% { transform: translateX(4px); }
+        }
+    `;
+    document.head.appendChild(style);
+
+    // Reset Modal Functions
+    function openResetModal() {
+        document.getElementById('resetModal').classList.add('open');
+    }
+
+    function closeResetModal() {
+        document.getElementById('resetModal').classList.remove('open');
+        document.getElementById('resetSuccess').classList.remove('show');
+    }
+
+    function sendResetLink() {
+        const email = document.getElementById('resetEmail').value;
+        if (!email) {
+            alert('يرجى إدخال البريد الإلكتروني');
+            return;
+        }
+        document.getElementById('resetSuccess').classList.add('show');
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+        initDefaultUser();
+        console.log('🚀 ONVO OS Login Ready');
+        console.log('📝 Default Credentials:');
+        console.log('   Email: founder@onvo.os');
+        console.log('   Password: founder123');
+    });
+
+    // Clear session on page unload (optional)
+    window.addEventListener('beforeunload', () => {
+        // Keep session for now
+    });
     </script>
 </body>
 </html>
