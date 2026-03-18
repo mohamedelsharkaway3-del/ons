@@ -3,110 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="theme-color" content="#02030a">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <title>ONVO OS — لوحة التحكم</title>
+    <meta name="theme-color" content="#0a0e27">
+    <title>ONVO OS v5 — لوحة التحكم</title>
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⬡</text></svg>">
 </head>
-<body>
-    <!-- Loading Screen -->
-    <div id="appLoader">
-        <div class="logo-mark">⬡</div>
-        <div class="load-bar"><div class="load-fill"></div></div>
-        <p>جاري تحميل ONVO OS…</p>
+<body class="app-body">
+    <!-- 3D Background -->
+    <div class="bg-3d">
+        <div class="orb orb-1"></div>
+        <div class="orb orb-2"></div>
+        <div class="grid-3d"></div>
     </div>
 
-    <!-- Welcome Overlay (Audio) -->
+    <!-- Loading Screen -->
+    <div class="loading-overlay active" id="appLoader">
+        <div class="loader-3d">
+            <div class="loader-ring"></div>
+            <div class="loader-ring"></div>
+            <div class="loader-core">⬡</div>
+        </div>
+        <p>جاري تحضير مساحتك...</p>
+    </div>
+
+    <!-- Welcome Overlay -->
     <div class="welcome-overlay" id="welcomeOverlay">
-        <div class="welcome-content">
+        <div class="welcome-card glass-3d">
             <div class="welcome-avatar" id="welcomeAvatar">⬡</div>
-            <h1 class="welcome-title" id="welcomeTitle">مرحباً بك</h1>
-            <p class="welcome-subtitle" id="welcomeSubtitle">جاري تحميل مساحة العمل...</p>
+            <h2 class="welcome-title" id="welcomeTitle">أهلاً بك</h2>
+            <p class="welcome-subtitle" id="welcomeSubtitle">جاري تحميل لوحة التحكم...</p>
             <div class="welcome-wave">
                 <span></span><span></span><span></span><span></span><span></span>
             </div>
         </div>
     </div>
 
-    <!-- Audio Indicator -->
-    <div class="audio-indicator" id="audioIndicator">
-        <div class="pulse"></div>
-        <span>جاري التشغيل الصوتي...</span>
-    </div>
-
-    <!-- Ambient Background -->
-    <div class="ambient"></div>
-    <div class="ambient-mid"></div>
-    <div class="grid-overlay"></div>
-
     <!-- App Layout -->
     <div class="app-layout">
-        <!-- Sidebar (Desktop) -->
-        <aside class="sidebar glass" id="sidebar">
+        <!-- Sidebar -->
+        <aside class="sidebar glass-3d" id="sidebar">
+            <!-- Logo -->
             <div class="sidebar-logo">
-                <div class="logo-mark">⬡</div>
-                <div>
+                <div class="logo-icon">⬡</div>
+                <div class="logo-info">
                     <h2>ONVO OS</h2>
-                    <span>Premium Workspace</span>
+                    <span>v5.0 Pro</span>
                 </div>
             </div>
 
-            <div class="sidebar-role-badge">
+            <!-- User Badge -->
+            <div class="user-badge glass-3d">
                 <span class="live-dot"></span>
-                <span id="userRoleDisplay">مؤسس</span>
+                <span id="userRoleBadge">مؤسس</span>
             </div>
 
-            <div class="sidebar-section-label">الرئيسية</div>
+            <!-- Navigation -->
             <nav class="sidebar-nav">
                 <a href="#dashboard" class="nav-item active" data-page="dashboard">
-                    <div class="nav-icon">📊</div>
+                    <span class="nav-icon">📊</span>
                     <span>لوحة التحكم</span>
                 </a>
                 <a href="#tasks" class="nav-item" data-page="tasks">
-                    <div class="nav-icon">📋</div>
+                    <span class="nav-icon">📋</span>
                     <span>المهام</span>
-                    <span class="nav-badge" id="taskBadge">0</span>
+                    <span class="nav-badge">3</span>
                 </a>
                 <a href="#team" class="nav-item" data-page="team">
-                    <div class="nav-icon">👥</div>
+                    <span class="nav-icon">👥</span>
                     <span>الفريق</span>
                 </a>
                 <a href="#clients" class="nav-item" data-page="clients">
-                    <div class="nav-icon">🏢</div>
+                    <span class="nav-icon">🏢</span>
                     <span>العملاء</span>
                 </a>
                 <a href="#calendar" class="nav-item" data-page="calendar">
-                    <div class="nav-icon">📅</div>
+                    <span class="nav-icon">📅</span>
                     <span>المحتوى</span>
                 </a>
-                <a href="#org-chart" class="nav-item" data-page="org-chart">
-                    <div class="nav-icon">🏢</div>
-                    <span>الهيكل التنظيمي</span>
+                <a href="#analytics" class="nav-item" data-page="analytics">
+                    <span class="nav-icon">📈</span>
+                    <span>التحليلات</span>
                 </a>
             </nav>
 
-            <div class="sidebar-section-label">الإدارة</div>
-            <nav class="sidebar-nav">
-                <a href="#admin" class="nav-item founder-only" data-page="admin">
-                    <div class="nav-icon">⚙️</div>
-                    <span>لوحة الإدارة</span>
-                </a>
-                <a href="#settings" class="nav-item" data-page="settings">
-                    <div class="nav-icon">🔧</div>
-                    <span>الإعدادات</span>
-                </a>
-            </nav>
+            <!-- Admin Section -->
+            <div class="sidebar-section">
+                <span class="section-label">الإدارة</span>
+                <nav class="sidebar-nav">
+                    <a href="#admin" class="nav-item founder-only" data-page="admin">
+                        <span class="nav-icon">⚙️</span>
+                        <span>لوحة الإدارة</span>
+                    </a>
+                    <a href="#settings" class="nav-item" data-page="settings">
+                        <span class="nav-icon">🔧</span>
+                        <span>الإعدادات</span>
+                    </a>
+                </nav>
+            </div>
 
+            <!-- User Profile -->
             <div class="sidebar-footer">
-                <div class="user-card">
+                <div class="user-profile glass-3d">
                     <div class="user-avatar" id="userAvatar">م</div>
-                    <div class="user-info">
-                        <div class="user-name" id="userName">ONVO User</div>
-                        <div class="user-role" id="userRoleText">مؤسس ومدير</div>
+                    <div class="user-details">
+                        <span class="user-name" id="userName">مستخدم</span>
+                        <span class="user-role" id="userRole">عضو</span>
                     </div>
-                    <button class="icon-btn" id="themeToggle" title="تغيير الثيم">🌙</button>
                     <button class="icon-btn" id="logoutBtn" title="تسجيل خروج">⏻</button>
                 </div>
             </div>
@@ -114,440 +115,401 @@
 
         <!-- Main Content -->
         <main class="main-content">
-            <header class="topbar glass">
+            <!-- Topbar -->
+            <header class="topbar glass-3d">
                 <button class="menu-toggle" id="menuToggle">☰</button>
-                <h1 class="topbar-title">لوحة التحكم</h1>
-                <div class="topbar-search">
-                    <input type="text" placeholder="بحث..." id="globalSearch">
-                    <span>🔍</span>
+                <h1 class="topbar-title" id="page-title">لوحة التحكم</h1>
+                
+                <div class="topbar-search glass-3d">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="ابحث عن أي شيء..." id="globalSearch">
                 </div>
+                
                 <div class="topbar-actions">
-                    <button class="icon-btn" id="notifBtn">🔔</button>
-                    <button class="icon-btn" id="quickAddBtn" onclick="openModal('task')">＋</button>
+                    <button class="icon-btn" id="themeToggle" title="تغيير الثيم">🌙</button>
+                    <button class="icon-btn" id="notifBtn" title="الإشعارات">
+                        🔔
+                        <span class="notif-dot"></span>
+                    </button>
+                    <button class="icon-btn btn-primary" id="quickAddBtn" title="إضافة سريع">＋</button>
                 </div>
             </header>
 
+            <!-- Page Content -->
             <div class="page-content">
                 <!-- Dashboard View -->
                 <div class="page-view active" id="view-dashboard">
-                    <div class="page-header">
-                        <h1>صباح الخير 👋</h1>
-                        <p>إليك ملخص أداء فريقك اليوم</p>
+                    <!-- Welcome Banner -->
+                    <div class="welcome-banner glass-3d">
+                        <div class="banner-content">
+                            <h2>صباح الخير، <span id="bannerName">مؤسس</span> ☀️</h2>
+                            <p>إليك نظرة سريعة على أداء فريقك اليوم</p>
+                        </div>
+                        <div class="banner-actions">
+                            <button class="btn-3d btn-sm" onclick="openModal('task')">＋ مهمة جديدة</button>
+                            <button class="btn-3d btn-sm btn-secondary" onclick="refreshDashboard()">↻ تحديث</button>
+                        </div>
                     </div>
 
-                    <div class="quick-actions">
-                        <button class="quick-action-btn" onclick="openModal('task')">
-                            <span class="icon">✨</span> مهمة جديدة
-                        </button>
-                        <button class="quick-action-btn" onclick="openFounderUserModal()">
-                            <span class="icon">👤</span> إضافة عضو
-                        </button>
-                        <button class="quick-action-btn" onclick="openModal('calendar')">
-                            <span class="icon">📅</span> محتوى AI
-                        </button>
-                        <button class="quick-action-btn" onclick="sendWhatsApp()">
-                            <span class="icon">📲</span> واتساب
-                        </button>
-                    </div>
-
+                    <!-- Quick Stats -->
                     <div class="stats-grid">
-                        <div class="stat-card glass blue">
-                            <div class="stat-icon">📋</div>
-                            <div class="stat-value" id="statTasks">12</div>
+                        <div class="stat-card glass-3d" data-tilt>
+                            <div class="stat-header">
+                                <span class="stat-icon">📋</span>
+                                <span class="stat-delta up">↑ 12%</span>
+                            </div>
+                            <div class="stat-value" id="statTasks">0</div>
                             <div class="stat-label">مهام نشطة</div>
-                            <div class="stat-delta up">↑ ١٢٪</div>
+                            <div class="stat-sparkline">
+                                <div class="sparkline-fill" style="width: 78%"></div>
+                            </div>
                         </div>
-                        <div class="stat-card glass indigo">
-                            <div class="stat-icon">✅</div>
-                            <div class="stat-value" id="statCompleted">28</div>
+                        
+                        <div class="stat-card glass-3d" data-tilt>
+                            <div class="stat-header">
+                                <span class="stat-icon">✅</span>
+                                <span class="stat-delta up">↑ 24%</span>
+                            </div>
+                            <div class="stat-value" id="statCompleted">0</div>
                             <div class="stat-label">منجزة الأسبوع</div>
+                            <div class="stat-sparkline">
+                                <div class="sparkline-fill" style="width: 85%"></div>
+                            </div>
                         </div>
-                        <div class="stat-card glass violet">
-                            <div class="stat-icon">👥</div>
-                            <div class="stat-value" id="statMembers">5</div>
+                        
+                        <div class="stat-card glass-3d" data-tilt>
+                            <div class="stat-header">
+                                <span class="stat-icon">👥</span>
+                                <span class="stat-delta">+2</span>
+                            </div>
+                            <div class="stat-value" id="statMembers">0</div>
                             <div class="stat-label">أعضاء الفريق</div>
+                            <div class="stat-sparkline">
+                                <div class="sparkline-fill" style="width: 100%"></div>
+                            </div>
                         </div>
-                        <div class="stat-card glass emerald">
-                            <div class="stat-icon">🏢</div>
-                            <div class="stat-value" id="statClients">8</div>
+                        
+                        <div class="stat-card glass-3d" data-tilt>
+                            <div class="stat-header">
+                                <span class="stat-icon">🏢</span>
+                                <span class="stat-delta up">↑ 5%</span>
+                            </div>
+                            <div class="stat-value" id="statClients">0</div>
                             <div class="stat-label">عملاء نشطون</div>
+                            <div class="stat-sparkline">
+                                <div class="sparkline-fill" style="width: 92%"></div>
+                            </div>
                         </div>
                     </div>
 
+                    <!-- Dashboard Grid -->
                     <div class="dashboard-grid">
-                        <div class="section-card glass">
-                            <div class="section-header">
-                                <h2 class="section-title">📋 المهام النشطة</h2>
-                                <button class="section-action" onclick="openModal('task')">＋ جديدة</button>
+                        <!-- Tasks Widget -->
+                        <div class="widget glass-3d" data-tilt>
+                            <div class="widget-header">
+                                <h3>📋 المهام النشطة</h3>
+                                <button class="widget-action" onclick="openModal('task')">عرض الكل</button>
                             </div>
                             <div class="task-list" id="taskList">
-                                <div class="task-row">
-                                    <div class="task-check"></div>
-                                    <div class="task-info">
-                                        <div class="task-title">تصميم هوية بصرية جديدة</div>
-                                        <div class="task-meta">أحمد محمد • عالي الأولوية</div>
-                                    </div>
-                                    <div class="task-priority high"></div>
-                                </div>
-                                <div class="task-row">
-                                    <div class="task-check done">✓</div>
-                                    <div class="task-info">
-                                        <div class="task-title done">مراجعة محتوى السوشيال ميديا</div>
-                                        <div class="task-meta">سارة علي • منجز</div>
-                                    </div>
-                                    <div class="task-priority low"></div>
-                                </div>
+                                <!-- Tasks loaded via JS -->
                             </div>
                         </div>
 
-                        <div class="section-card glass ai-panel">
-                            <div class="section-header">
-                                <h2 class="section-title">🤖 المساعد الذكي</h2>
+                        <!-- AI Assistant -->
+                        <div class="widget glass-3d ai-widget" data-tilt>
+                            <div class="widget-header">
+                                <h3>🤖 المساعد الذكي</h3>
                                 <span class="badge badge-blue">Claude AI</span>
                             </div>
-                            <div class="ai-chat-area" id="aiChatArea">
+                            <div class="ai-chat" id="aiChat">
                                 <div class="ai-message">
                                     <div class="ai-avatar">⬡</div>
-                                    <div class="ai-bubble">مرحباً! أنا مساعدك الذكي. اسألني عن مهامك أو فريقك. 🚀</div>
+                                    <div class="ai-bubble">مرحباً! أنا مساعدك الذكي. اسألني عن أي شيء يخص فريقك أو مهامك. 🚀</div>
                                 </div>
                             </div>
-                            <div class="ai-input-row">
+                            <div class="ai-input-wrapper">
                                 <input type="text" class="ai-input" id="aiInput" placeholder="اكتب سؤالك هنا..." onkeypress="if(event.key==='Enter')sendAI()">
-                                <button class="ai-send-btn" onclick="sendAI()">➤</button>
+                                <button class="ai-send" onclick="sendAI()">➤</button>
+                            </div>
+                        </div>
+
+                        <!-- Team Progress -->
+                        <div class="widget glass-3d" data-tilt>
+                            <div class="widget-header">
+                                <h3>👥 تقدم الفريق</h3>
+                                <button class="widget-action" onclick="refreshTeam()">↻</button>
+                            </div>
+                            <div class="team-list" id="teamList">
+                                <!-- Team members loaded via JS -->
+                            </div>
+                        </div>
+
+                        <!-- Weekly Calendar -->
+                        <div class="widget glass-3d" data-tilt>
+                            <div class="widget-header">
+                                <h3>📅 هذا الأسبوع</h3>
+                            </div>
+                            <div class="week-grid" id="weekGrid">
+                                <!-- Days generated via JS -->
+                            </div>
+                        </div>
+
+                        <!-- Motivational Card -->
+                        <div class="widget glass-3d inspire-widget" data-tilt>
+                            <div class="inspire-content">
+                                <p class="inspire-quote" id="inspireQuote">"النجاح ليس صدفة، بل هو نتيجة التخطيط والعمل المستمر."</p>
+                                <span class="inspire-author">— ONVO OS</span>
+                            </div>
+                            <button class="inspire-refresh" onclick="refreshInspire()">✨ اقتباس جديد</button>
+                        </div>
+
+                        <!-- Quick Actions -->
+                        <div class="widget glass-3d" data-tilt>
+                            <div class="widget-header">
+                                <h3>⚡ إجراءات سريعة</h3>
+                            </div>
+                            <div class="quick-actions">
+                                <button class="action-btn" onclick="openModal('task')">
+                                    <span class="action-icon">✨</span>
+                                    <span>مهمة جديدة</span>
+                                </button>
+                                <button class="action-btn" onclick="openFounderModal()">
+                                    <span class="action-icon">👤</span>
+                                    <span>إضافة عضو</span>
+                                </button>
+                                <button class="action-btn" onclick="openModal('calendar')">
+                                    <span class="action-icon">📅</span>
+                                    <span>جدول محتوى</span>
+                                </button>
+                                <button class="action-btn" onclick="sendWhatsApp()">
+                                    <span class="action-icon">📲</span>
+                                    <span>واتساب</span>
+                                </button>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Other Views (Tasks, Team, Clients, Calendar, Admin, Settings, Org) -->
-                <div class="page-view" id="view-tasks"><div class="page-header"><h1>📋 إدارة المهام</h1></div></div>
-                <div class="page-view" id="view-team"><div class="page-header"><h1>👥 إدارة الفريق</h1></div></div>
-                <div class="page-view" id="view-clients"><div class="page-header"><h1>🏢 إدارة العملاء</h1></div></div>
-                <div class="page-view" id="view-calendar"><div class="page-header"><h1>📅 Content Calendar</h1></div></div>
-                <div class="page-view" id="view-admin"><div class="page-header"><h1>⚙️ لوحة الإدارة</h1></div></div>
-                <div class="page-view" id="view-settings"><div class="page-header"><h1>🔧 الإعدادات</h1></div></div>
-                <div class="page-view" id="view-org-chart"><div class="page-header"><h1>🏢 الهيكل التنظيمي</h1></div></div>
+                <!-- Other Views (Tasks, Team, Clients, etc.) -->
+                <div class="page-view" id="view-tasks">
+                    <div class="page-header">
+                        <h1>📋 إدارة المهام</h1>
+                        <p>تتبع وتوزيع جميع المهام على فريقك</p>
+                    </div>
+                    <div class="widget glass-3d">
+                        <div class="task-list" id="allTasksList"></div>
+                    </div>
+                </div>
+
+                <div class="page-view" id="view-team">
+                    <div class="page-header">
+                        <h1>👥 إدارة الفريق</h1>
+                        <p>أعضاء مساحة العمل وأداؤهم</p>
+                    </div>
+                    <div class="widget glass-3d">
+                        <div class="team-list" id="fullTeamList"></div>
+                    </div>
+                </div>
+
+                <div class="page-view" id="view-clients">
+                    <div class="page-header">
+                        <h1>🏢 إدارة العملاء</h1>
+                        <p>تتبع جميع عملائك ومشاريعهم</p>
+                    </div>
+                    <div class="widget glass-3d">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>العميل</th>
+                                    <th>المشروع</th>
+                                    <th>المهام</th>
+                                    <th>الإنجاز</th>
+                                    <th>الحالة</th>
+                                    <th>إجراء</th>
+                                </tr>
+                            </thead>
+                            <tbody id="clientsTableBody"></tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="page-view" id="view-calendar">
+                    <div class="page-header">
+                        <h1>📅 Content Calendar</h1>
+                        <p>خطط محتواك الأسبوعي بالذكاء الاصطناعي</p>
+                    </div>
+                    <div class="widget glass-3d">
+                        <div class="upload-zone" id="uploadZone">
+                            <span class="upload-icon">📁</span>
+                            <p>اسحب وأفلت الملفات هنا</p>
+                            <small>PDF، نص، صور — لتحويلها إلى مهام</small>
+                            <input type="file" id="fileInput" hidden>
+                        </div>
+                        <button class="btn-3d btn-primary" onclick="generateContent()">🤖 توليد بـ AI</button>
+                        <div id="calendarOutput"></div>
+                    </div>
+                </div>
+
+                <div class="page-view" id="view-admin">
+                    <div class="page-header">
+                        <h1>⚙️ لوحة الإدارة</h1>
+                        <p>تحكم في الأعضاء والصلاحيات — للمؤسس فقط</p>
+                    </div>
+                    <div class="widget glass-3d">
+                        <div class="admin-header">
+                            <h3>👥 إدارة المستخدمين</h3>
+                            <button class="btn-3d btn-sm" onclick="openFounderModal()">＋ مستخدم جديد</button>
+                        </div>
+                        <div id="adminMemberList"></div>
+                    </div>
+                </div>
+
+                <div class="page-view" id="view-settings">
+                    <div class="page-header">
+                        <h1>🔧 الإعدادات</h1>
+                        <p>خصّص تجربة ONVO OS الخاصة بك</p>
+                    </div>
+                    <div class="widget glass-3d">
+                        <div class="settings-list">
+                            <div class="setting-item">
+                                <div>
+                                    <span class="setting-title">الوضع الليلي</span>
+                                    <span class="setting-desc">تفعيل/تعطيل الثيم الداكن</span>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="darkModeToggle" checked>
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                            <div class="setting-item">
+                                <div>
+                                    <span class="setting-title">الإشعارات الصوتية</span>
+                                    <span class="setting-desc">تشغيل أصوات عند وصول إشعارات</span>
+                                </div>
+                                <label class="toggle-switch">
+                                    <input type="checkbox" id="soundToggle">
+                                    <span class="toggle-slider"></span>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
 
-        <!-- Bottom Navigation (Mobile) -->
-        <nav class="bottom-nav glass" id="bottomNav">
-            <div class="bottom-nav-items">
-                <a href="#dashboard" class="bottom-nav-item active" data-page="dashboard">
-                    <div class="nav-icon">📊</div><span>الرئيسية</span>
-                </a>
-                <a href="#tasks" class="bottom-nav-item" data-page="tasks">
-                    <div class="nav-icon">📋</div><span>المهام</span>
-                </a>
-                <a href="#calendar" class="bottom-nav-item" data-page="calendar">
-                    <div class="nav-icon">📅</div><span>المحتوى</span>
-                </a>
-                <a href="#team" class="bottom-nav-item" data-page="team">
-                    <div class="nav-icon">👥</div><span>الفريق</span>
-                </a>
-                <a href="#settings" class="bottom-nav-item" data-page="settings">
-                    <div class="nav-icon">⚙️</div><span>إعدادات</span>
-                </a>
-            </div>
+        <!-- Mobile Bottom Nav -->
+        <nav class="bottom-nav glass-3d" id="bottomNav">
+            <a href="#dashboard" class="nav-item active" data-page="dashboard">
+                <span class="nav-icon">📊</span>
+                <span>الرئيسية</span>
+            </a>
+            <a href="#tasks" class="nav-item" data-page="tasks">
+                <span class="nav-icon">📋</span>
+                <span>المهام</span>
+            </a>
+            <a href="#calendar" class="nav-item" data-page="calendar">
+                <span class="nav-icon">📅</span>
+                <span>المحتوى</span>
+            </a>
+            <a href="#team" class="nav-item" data-page="team">
+                <span class="nav-icon">👥</span>
+                <span>الفريق</span>
+            </a>
+            <a href="#settings" class="nav-item" data-page="settings">
+                <span class="nav-icon">⚙️</span>
+                <span>إعدادات</span>
+            </a>
         </nav>
     </div>
 
-    <!-- FAB & Modals -->
-    <button class="fab" id="fab" onclick="openQuickMenu()">＋</button>
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal" id="modalContainer">
+    <!-- Floating Action Button -->
+    <button class="fab-3d" id="fab" onclick="openQuickMenu()">
+        <span class="fab-icon">＋</span>
+        <span class="fab-glow"></span>
+    </button>
+
+    <!-- Modal Container -->
+    <div class="modal-backdrop" id="modalOverlay">
+        <div class="modal-3d glass-3d">
             <button class="modal-close" onclick="closeModal()">✕</button>
             <div id="modalContent"></div>
         </div>
     </div>
-    <div class="modal-overlay" id="founderUserModal">
-        <div class="modal" style="max-width: 680px;">
+
+    <!-- Founder User Modal -->
+    <div class="modal-backdrop" id="founderModal">
+        <div class="modal-3d glass-3d" style="max-width: 600px;">
             <button class="modal-close" onclick="closeFounderModal()">✕</button>
-            <h2 class="modal-title">👑 إنشاء مستخدم جديد</h2>
-            <p class="modal-sub">صلاحيات كاملة للمؤسس</p>
-            <div class="user-creation-grid">
-                <div class="form-group"><label class="form-label">Username *</label><input type="text" class="form-input" id="newUsername" placeholder="اسم المستخدم" dir="ltr"></div>
-                <div class="form-group"><label class="form-label">Password *</label><input type="password" class="form-input" id="newPassword" placeholder="كلمة المرور" dir="ltr"></div>
-                <div class="form-group"><label class="form-label">الاسم الكامل *</label><input type="text" class="form-input" id="newFullName" placeholder="الاسم الثلاثي"></div>
-                <div class="form-group"><label class="form-label">البريد الإلكتروني *</label><input type="email" class="form-input" id="newEmail" placeholder="example@company.com"></div>
-                <div class="form-group department-select"><label class="form-label">القسم *</label><select class="form-input" id="newDepartment"><option value="founder">👑 المؤسس</option><option value="creative">🎨 الإبداع</option><option value="accounts">📊 الحسابات</option><option value="digital">📱 الرقمي</option></select></div>
-                <div class="form-group department-select"><label class="form-label">المستوى *</label><select class="form-input" id="newLevel"><option value="c-level">👑 تنفيذي</option><option value="manager">📋 مدير</option><option value="member">🎯 عضو</option></select></div>
+            <h3>👑 إنشاء مستخدم جديد</h3>
+            <p style="color: var(--text-3); margin-bottom: 24px;">صلاحيات كاملة للمؤسس</p>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label>Username</label>
+                    <input type="text" id="newUsername" class="modal-input" placeholder="اسم المستخدم" dir="ltr">
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <input type="password" id="newPassword" class="modal-input" placeholder="كلمة المرور" dir="ltr">
+                </div>
+                <div class="form-group">
+                    <label>الاسم الكامل</label>
+                    <input type="text" id="newFullName" class="modal-input" placeholder="الاسم الثلاثي">
+                </div>
+                <div class="form-group">
+                    <label>البريد الإلكتروني</label>
+                    <input type="email" id="newEmail" class="modal-input" placeholder="example@company.com">
+                </div>
+                <div class="form-group">
+                    <label>القسم</label>
+                    <select id="newDepartment" class="modal-input">
+                        <option value="founder">👑 المؤسس</option>
+                        <option value="creative">🎨 الإبداع</option>
+                        <option value="accounts">📊 الحسابات</option>
+                        <option value="digital">📱 الرقمي</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>المستوى</label>
+                    <select id="newLevel" class="modal-input">
+                        <option value="c-level">👑 تنفيذي</option>
+                        <option value="manager">📋 مدير</option>
+                        <option value="member">🎯 عضو</option>
+                    </select>
+                </div>
             </div>
-            <div class="role-hierarchy-visual">
-                <label class="form-label">📊 هيكل الصلاحيات</label>
-                <div class="role-tier selected" data-level="1" onclick="selectRoleTier(this)"><div class="role-tier-icon">👑</div><div class="role-tier-info"><div class="role-tier-name">مؤسس</div><div class="role-tier-desc">صلاحيات كاملة</div></div></div>
-                <div class="role-tier" data-level="2" onclick="selectRoleTier(this)"><div class="role-tier-icon">🏢</div><div class="role-tier-info"><div class="role-tier-name">مدير تنفيذي</div><div class="role-tier-desc">إدارة الشركة</div></div></div>
-                <div class="role-tier" data-level="3" onclick="selectRoleTier(this)"><div class="role-tier-icon">📋</div><div class="role-tier-info"><div class="role-tier-name">مدير فريق</div><div class="role-tier-desc">قيادة الفريق</div></div></div>
-                <div class="role-tier" data-level="4" onclick="selectRoleTier(this)"><div class="role-tier-icon">🎯</div><div class="role-tier-info"><div class="role-tier-name">عضو فريق</div><div class="role-tier-desc">تنفيذ المهام</div></div></div>
+
+            <div class="role-selector">
+                <label style="font-size: 0.85rem; color: var(--text-3); margin-bottom: 12px; display: block;">مستوى الصلاحيات</label>
+                <div class="role-options">
+                    <label class="role-option selected" data-level="1">
+                        <input type="radio" name="roleLevel" value="1" checked hidden>
+                        <span class="role-icon">👑</span>
+                        <span class="role-name">مؤسس</span>
+                    </label>
+                    <label class="role-option" data-level="2">
+                        <input type="radio" name="roleLevel" value="2" hidden>
+                        <span class="role-icon">🏢</span>
+                        <span class="role-name">مدير</span>
+                    </label>
+                    <label class="role-option" data-level="3">
+                        <input type="radio" name="roleLevel" value="3" hidden>
+                        <span class="role-icon">📋</span>
+                        <span class="role-name">عضو</span>
+                    </label>
+                </div>
             </div>
-            <div style="display:flex;gap:12px;margin-top:24px;">
-                <button class="btn-primary" onclick="createFounderUser()">✓ إنشاء</button>
-                <button class="section-action" onclick="closeFounderModal()" style="flex:1">✕ إلغاء</button>
+
+            <div style="display: flex; gap: 12px; margin-top: 24px;">
+                <button class="btn-3d btn-primary" onclick="createFounderUser()">✓ إنشاء</button>
+                <button class="btn-3d btn-secondary" onclick="closeFounderModal()" style="flex: 1">✕ إلغاء</button>
             </div>
         </div>
     </div>
+
+    <!-- Toast Container -->
     <div class="toast-container" id="toastContainer"></div>
 
-    <!-- ═══════════════════════════════════════
-         APP JAVASCRIPT — كامل ومتكامل
-         ═══════════════════════════════════════ -->
-    <script src="modal.js"></script>
-    <script src="ai.js"></script>
-    <script>
-    // ═══════════════════════════════════════
-    //  ONVO OS — App Initialization v4.5
-    // ═══════════════════════════════════════
-
-    document.addEventListener('DOMContentLoaded', () => {
-        // 1. Check authentication
-        const user = JSON.parse(sessionStorage.getItem('onvo_user') || 'null');
-        if (!user) {
-            window.location.href = 'index.html';
-            return;
-        }
-
-        // 2. Update UI with user data
-        document.getElementById('userName').textContent = user.name || user.username;
-        document.getElementById('userRoleText').textContent = user.role || 'عضو';
-        document.getElementById('userAvatar').textContent = (user.name || user.username || 'م').charAt(0).toUpperCase();
-        document.getElementById('userRoleDisplay').textContent = user.role || 'عضو';
-
-        // 3. Hide loader after delay
-        setTimeout(() => {
-            const loader = document.getElementById('appLoader');
-            if (loader) loader.style.display = 'none';
-        }, 1500);
-
-        // 4. Initialize navigation
-        initNavigation();
-
-        // 5. Initialize sidebar toggle (mobile)
-        initSidebarToggle();
-
-        // 6. Initialize theme toggle
-        initThemeToggle();
-
-        // 7. Initialize counters animation
-        animateCounters();
-
-        // 8. Initialize planner grid
-        initPlannerGrid();
-
-        // 9. Load founder-only elements check
-        checkFounderAccess();
-
-        // 10. Play welcome audio (if enabled)
-        setTimeout(() => {
-            if (window.AudioWelcome && !sessionStorage.getItem('welcome_played')) {
-                AudioWelcome.playWelcome(user.name || user.username, user.role || 'عضو');
-                sessionStorage.setItem('welcome_played', 'true');
-            }
-        }, 2000);
-
-        console.log('✅ ONVO OS App Loaded');
-        console.log('👤 User:', user.name);
-    });
-
-    // Navigation Handler
-    function initNavigation() {
-        const navItems = document.querySelectorAll('.nav-item, .bottom-nav-item');
-        const pageViews = document.querySelectorAll('.page-view');
-        const topbarTitle = document.querySelector('.topbar-title');
-
-        navItems.forEach(item => {
-            item.addEventListener('click', (e) => {
-                e.preventDefault();
-                const page = item.dataset.page;
-                if (!page) return;
-
-                // Update active nav
-                navItems.forEach(n => n.classList.remove('active'));
-                item.classList.add('active');
-
-                // Update active page view
-                pageViews.forEach(view => view.classList.remove('active'));
-                const target = document.getElementById(`view-${page}`);
-                if (target) target.classList.add('active');
-
-                // Update topbar title
-                const titles = {
-                    'dashboard': 'لوحة التحكم',
-                    'tasks': 'المهام',
-                    'team': 'الفريق',
-                    'clients': 'العملاء',
-                    'calendar': 'المحتوى',
-                    'admin': 'الإدارة',
-                    'settings': 'الإعدادات',
-                    'org-chart': 'الهيكل التنظيمي'
-                };
-                if (topbarTitle) topbarTitle.textContent = titles[page] || 'ONVO OS';
-
-                // Close sidebar on mobile
-                if (window.innerWidth <= 768) {
-                    document.getElementById('sidebar')?.classList.remove('open');
-                }
-            });
-        });
-    }
-
-    // Sidebar Toggle (Mobile)
-    function initSidebarToggle() {
-        const menuToggle = document.getElementById('menuToggle');
-        const sidebar = document.getElementById('sidebar');
-        if (menuToggle && sidebar) {
-            menuToggle.addEventListener('click', () => {
-                sidebar.classList.toggle('open');
-            });
-        }
-    }
-
-    // Theme Toggle
-    function initThemeToggle() {
-        const themeToggle = document.getElementById('themeToggle');
-        if (themeToggle) {
-            themeToggle.addEventListener('click', () => {
-                document.body.classList.toggle('light');
-                themeToggle.textContent = document.body.classList.contains('light') ? '☀️' : '🌙';
-            });
-        }
-    }
-
-    // Animate Counters
-    function animateCounters() {
-        const counters = document.querySelectorAll('.stat-value');
-        counters.forEach(counter => {
-            const target = parseInt(counter.textContent) || 0;
-            let current = 0;
-            const increment = Math.ceil(target / 20);
-            const update = () => {
-                current += increment;
-                if (current < target) {
-                    counter.textContent = current;
-                    requestAnimationFrame(update);
-                } else {
-                    counter.textContent = target;
-                }
-            };
-            update();
-        });
-    }
-
-    // Weekly Planner Grid
-    function initPlannerGrid() {
-        const grid = document.getElementById('plannerGrid');
-        if (!grid) return;
-        const days = ['الأحد','الإثنين','الثلاثاء','الأربعاء','الخميس','الجمعة','السبت'];
-        const today = new Date().getDay();
-        grid.innerHTML = days.map((day, i) => `
-            <div class="planner-day ${i===today?'today':''}">
-                <div class="day-name">${day}</div>
-                <div class="day-num">${i+1}</div>
-                <div class="day-tasks"><div class="day-dot" style="background:var(--blue)"></div></div>
-            </div>
-        `).join('');
-    }
-
-    // Check Founder Access for restricted elements
-    function checkFounderAccess() {
-        const user = JSON.parse(sessionStorage.getItem('onvo_user') || '{}');
-        const isFounder = user.role === 'مؤسس' || user.level === 'c-level';
-        
-        document.querySelectorAll('.founder-only').forEach(el => {
-            if (!isFounder) {
-                el.style.display = 'none';
-                el.closest('.nav-item')?.classList.add('locked');
-            }
-        });
-    }
-
-    // Founder User Modal Functions
-    let selectedRoleLevel = 1;
-    function openFounderUserModal() {
-        document.getElementById('founderUserModal')?.classList.add('open');
-        document.body.style.overflow = 'hidden';
-        selectedRoleLevel = 1;
-        document.querySelectorAll('.role-tier').forEach(t => t.classList.remove('selected'));
-        document.querySelector('.role-tier[data-level="1"]')?.classList.add('selected');
-    }
-    function closeFounderModal() {
-        document.getElementById('founderUserModal')?.classList.remove('open');
-        document.body.style.overflow = '';
-    }
-    function selectRoleTier(el) {
-        document.querySelectorAll('.role-tier').forEach(t => t.classList.remove('selected'));
-        el.classList.add('selected');
-        selectedRoleLevel = parseInt(el.dataset.level);
-    }
-    async function createFounderUser() {
-        const username = document.getElementById('newUsername')?.value.trim();
-        const password = document.getElementById('newPassword')?.value;
-        const fullName = document.getElementById('newFullName')?.value.trim();
-        const email = document.getElementById('newEmail')?.value.trim();
-        const dept = document.getElementById('newDepartment')?.value;
-        const level = document.getElementById('newLevel')?.value;
-        
-        if (!username || !password || !fullName || !email) {
-            showToast('⚠️', 'خطأ', 'يرجى ملء الحقول المطلوبة');
-            return;
-        }
-        
-        const newUser = {
-            id: 'user_' + Date.now(),
-            username, password, fullName, email,
-            department: dept, level,
-            roleLevel: selectedRoleLevel,
-            status: 'active',
-            createdAt: new Date().toISOString()
-        };
-        
-        const users = JSON.parse(localStorage.getItem('onvo_users') || '[]');
-        users.push(newUser);
-        localStorage.setItem('onvo_users', JSON.stringify(users));
-        
-        showToast('✅', 'تم الإنشاء', `تم إضافة ${fullName}`);
-        closeFounderModal();
-        
-        // Refresh member list if exists
-        if (typeof loadAdminMembers === 'function') loadAdminMembers();
-    }
-
-    // Toast Notification
-    function showToast(icon, title, body) {
-        const container = document.getElementById('toastContainer');
-        if (!container) return;
-        const toast = document.createElement('div');
-        toast.className = 'toast';
-        toast.innerHTML = `<span class="toast-icon">${icon}</span><div><div class="toast-title">${title}</div><div class="toast-body">${body}</div></div>`;
-        container.appendChild(toast);
-        setTimeout(() => {
-            toast.classList.add('hiding');
-            setTimeout(() => toast.remove(), 400);
-        }, 3500);
-    }
-
-    // WhatsApp Integration
-    function sendWhatsApp() {
-        const phone = prompt('أدخل رقم الواتساب (مع كود الدولة):', '201');
-        if (phone) {
-            const msg = encodeURIComponent('مرحباً! هذا تحديث من منصة ONVO OS');
-            window.open(`https://wa.me/${phone}?text=${msg}`, '_blank');
-        }
-    }
-
-    // Logout
-    document.getElementById('logoutBtn')?.addEventListener('click', () => {
-        sessionStorage.removeItem('onvo_user');
-        sessionStorage.removeItem('welcome_played');
-        window.location.href = 'index.html';
-    });
-
-    // Export functions for global use
-    window.openFounderUserModal = openFounderUserModal;
-    window.closeFounderModal = closeFounderModal;
-    window.selectRoleTier = selectRoleTier;
-    window.createFounderUser = createFounderUser;
-    window.showToast = showToast;
-    window.sendWhatsApp = sendWhatsApp;
-    </script>
+    <script src="app.js"></script>
 </body>
 </html>
