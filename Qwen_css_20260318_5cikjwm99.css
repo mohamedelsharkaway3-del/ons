@@ -977,4 +977,229 @@ body {
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
     }
+}/* ═══════════════════════════════════════
+   MOBILE OPTIMIZATIONS — v5
+═══════════════════════════════════════ */
+
+@media (max-width: 768px) {
+    /* Larger touch targets */
+    button, .btn-primary, .icon-btn, .nav-item {
+        min-height: 48px;
+        min-width: 48px;
+    }
+    
+    /* Better text sizes */
+    html { font-size: 14px; }
+    .login-card { padding: 32px 24px; }
+    .login-headline { font-size: 1.5rem; }
+    
+    /* Sidebar improvements */
+    .sidebar {
+        transform: translateX(100%);
+        width: 280px;
+    }
+    
+    .sidebar.open {
+        transform: translateX(0);
+        box-shadow: -10px 0 40px rgba(0,0,0,0.5);
+    }
+    
+    .menu-toggle {
+        display: flex !important;
+    }
+    
+    /* Main content adjustments */
+    .main-content {
+        margin-right: 0 !important;
+    }
+    
+    .topbar {
+        padding: 0 16px;
+    }
+    
+    .topbar-search {
+        width: 180px;
+    }
+    
+    .topbar-search:focus-within {
+        width: 220px;
+    }
+    
+    /* Stats grid */
+    .stats-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+    }
+    
+    .stat-card {
+        padding: 18px 16px;
+    }
+    
+    .stat-value {
+        font-size: 1.8rem;
+    }
+    
+    /* Dashboard grid */
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    /* Task rows */
+    .task-row {
+        padding: 12px 14px;
+    }
+    
+    .task-title {
+        font-size: 0.85rem;
+    }
+    
+    /* Team list */
+    .team-member {
+        flex-wrap: wrap;
+    }
+    
+    /* AI Panel */
+    .ai-chat-area {
+        height: 200px;
+    }
+    
+    .ai-bubble {
+        max-width: 90%;
+    }
+    
+    /* Planner grid */
+    .planner-grid {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+    }
+    
+    .planner-day {
+        padding: 10px 4px;
+    }
+    
+    .day-num {
+        font-size: 0.95rem;
+    }
+    
+    /* Page content */
+    .page-content {
+        padding: 16px;
+    }
+    
+    .page-header h1 {
+        font-size: 1.4rem;
+    }
+    
+    /* Modals */
+    .modal {
+        max-width: 95%;
+        padding: 24px 20px;
+        margin: 16px;
+    }
+    
+    .modal-title {
+        font-size: 1.1rem;
+    }
+    
+    /* Tables */
+    .clients-table {
+        display: block;
+        overflow-x: auto;
+        white-space: nowrap;
+    }
+    
+    /* Bottom nav */
+    .bottom-nav {
+        display: flex !important;
+    }
+    
+    /* FAB position */
+    .fab {
+        bottom: 80px;
+        left: 20px;
+        width: 50px;
+        height: 50px;
+    }
+    
+    /* Toast */
+    .toast-container {
+        left: 50%;
+        transform: translateX(-50%);
+        top: 60px;
+        width: 90%;
+    }
+    
+    .toast {
+        max-width: 100%;
+    }
+}
+
+/* Small phones */
+@media (max-width: 480px) {
+    html { font-size: 13px; }
+    
+    .login-card {
+        padding: 28px 20px;
+    }
+    
+    .stats-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .stat-value {
+        font-size: 1.6rem;
+    }
+    
+    .planner-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .quick-actions {
+        flex-direction: column;
+    }
+    
+    .quick-action-btn {
+        width: 100%;
+    }
+    
+    .topbar-search {
+        display: none;
+    }
+    
+    .user-card .user-info {
+        display: none;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .nav-item:hover,
+    .task-row:hover,
+    .stat-card:hover {
+        transform: none;
+    }
+    
+    button:active,
+    .btn-primary:active,
+    .icon-btn:active {
+        transform: scale(0.95);
+    }
+}
+
+/* Safe area for notched phones */
+@supports (padding: max(0px)) {
+    .topbar {
+        padding-left: max(16px, env(safe-area-inset-left));
+        padding-right: max(16px, env(safe-area-inset-right));
+    }
+    
+    .bottom-nav {
+        padding-bottom: max(8px, env(safe-area-inset-bottom));
+    }
+    
+    .fab {
+        left: max(20px, env(safe-area-inset-left));
+        bottom: max(80px, env(safe-area-inset-bottom));
+    }
 }
